@@ -1,0 +1,181 @@
+% Intonace v korpusech mluvené češtiny: automatická anotace a corpus-driven
+  analýza
+
+<!-- % Analýza intonace v korpusech mluvené češtiny -->
+<!-- % Možnosti automatické anotace intonace v korpusech mluvené češtiny -->
+
+<!-- Peterkovy poznámky -- způsob, jak vyřadit nepříliš spolehlivé věty -->
+<!-- Výsledkem je nový fonetický přepis v souboru aligned.mlf, v kterém zároveň budou -->
+<!-- chybět věty, které byly akusticky příliš vzdálené od přepisu. Tyto chybějící -->
+<!-- věty je nutné odstranit ze seznamu trénovacích vět train.scp. Pak můžeme -->
+<!-- spustit poslední přetrénovaní modelů: -->
+
+<!-- křivka F0 v Praatu počítána pomocí autokorelace (pro výzkum intonace lepší -->
+<!-- než cross-correlation, i když těžko vůbec říct, co se xcorr tady myslí...)-->
+
+![POPISEK](./figures/kontura.pdf)
+
+![POPISEK](./figures/prozogram.pdf)
+
+Korpusy mluvené češtiny budované na ÚČNK doznaly v poslední době dvou poměrně
+výrazných technologických skoků kupředu. První z nich se týká samotného
+surového zvukového signálu, resp. způsobu jeho akvizice: oproti dřívější praxi
+se nahrává v nekomprimovaném bezeztrátovém formátu WAV a používají se
+kvalitnější přenosné diktafony, což má nesporný kladný vliv na kvalitu nahrávek
+-- jsou obecně lépe srozumitelné a čistší, než tomu u předchozích korpusů řady
+ORAL (CIT.) bylo zvykem. K tomu dozajista přispívají i pokyny pro nahrávající
+spolupracovníky, které je explicitně nabádají, aby kvalitě nahrávky věnovali co
+největší možnou péči (byť ne vždy se tyto pokyny pochopitelně daří dodržet).
+
+Druhý technologický posun je spojen s přepisem dat a spočívá v přechodu na
+vícevrstvou anotaci. Se zvukovým záznamem je nově možné propojit vícero na sobě
+nezávislých paralelních vrstev nesoucích různé typy informací. Oproti dřívější
+jedné vrstvě, která nesla přepis převážně založený na pravopisu, obohacený o
+některé výslovnostní či morfologické varianty ve spisovném standardu
+nepřítomné, pracuje se dnes se samostatnými vrstvami s ,,ortografickým`` a
+fonetickým přepisem, doplněnými o další úrovně s paralingvistickými a
+extralingvistickými informacemi o zvukové nahrávce. Takovýto přístup poskytuje
+při anotaci velkou volnost a možnost doplňovat v budoucnu podle potřeby další
+anotační vrstvy (ideálně by taková možnost měla být dostupná přímo i samotným
+koncovým uživatelům korpusu). Pravda, mnohé technické aspekty ještě zbývá
+dořešit, např. vůbec otázka rozhraní, přes něž budou data uživatelům
+zpřístupněna; ale jak ukazuje příklad korpusového manažeru ANNIS (CIT. Zeldes),
+který vyniká právě ve vyhledávání ve víceúrovňových provázaných jazykových
+datech, řešení existují
+
+<!-- sem možná šoupnout odkaz na SNR pro porozumění u lidí -- viz Volínova -->
+<!-- knížka o statistice -->
+
+Z prvního výše zmíněného technologického posunu plyne, že začíná být možné
+uplatňovat na korpusové nahrávky i více či méně automatizované metody analýzy
+signálu (tj. není již třeba výhradně spoléhat na mnohdy až nadpřirozenou
+schopnost lidského mozku vydolovat z šumu nahrávky lingvisticky relevantní
+události -- řeč). Druhý posun pak naznačuje, že existuje perspektiva, že
+výsledky těchto analýz budou moct být koncovým uživatelům zpřístupněny
+prostřednictvím samostatné doplňkové vrstvy v přepisu.
+
+V rámci svého doktorského projektu bych uživatelům rád jednu takovou doplňkovou
+vrstvu nabídl, a to vrstvu s **fonetickým přepisem intonace**. Zároveň míním
+využít lepší kvality zdrojových nahrávek k tomu, aby šel níže navrhovaný postup
+do velké míry zautomatizovat pomocí metod počítačového zpracování řeči, za
+použití v současné době již z velké části dostupných nástrojů (zejména knihovna
+HTK, umožnující mimo jiné zarovnání přepisu ke zvuku, a algoritmus pro
+percepční stylizaci intonačních kontur do podoby tzv. prozogramů
+[Mertens CIT.]). Díky tomu by kvůli intonologické anotaci neměla výrazně narůst
+náročnost přípravy dat pro mluvený korpus ani náklady na ni, neboť v ideálním
+případě bude postup vyžadovat minimální podíl ruční práce anotátorů.
+
+Zdůrazněme zde, že intonologická anotace by skutečně měla spočívat v
+**symbolickém přepisu** intonace, ne v pouhém zobrazení křivky základní
+frekvence (F0). Ta je sice pro instrumentální analýzu intonace velmi užitečná,
+ovšem z hlediska běžných metod korpusového výzkumu (n-gramy, kolokace,
+frekvenční distribuce) se bude lépe pracovat s intonací vtělenou do sekvence
+diskrétních symbolů. Koneckonců i vlivné intonologické formalismy (ToBI,
+INTSINT) s takovouto diskretizací počítají.
+
+Doplňme ještě, že tento přepis by skutečně měl být **fonetický**, ne
+fonologický. Cílem není předem stanovit intonační vzorce mluvené češtiny, ve
+smyslu funkčně diferenciovaných, distinktivních kategorií (ať už podle
+vlastních pozorování či Danešova kanonického modelu založeného na kadenci,
+polokadenci a antikadenci), nýbrž zpřístupnit data, na nichž půjde českou
+intonaci korpusovými metodami zkoumat, a její vlastnosti jakožto systému teprve
+vyvozovat, čistě na základě empirie. V rámci doktorského projektu se o
+předběžné zmapování alespoň části této oblasti pochopitelně pokusím, v duchu
+*corpus-driven* (viz CIT. Tognini-Bonelli) výzkumu.
+
+Z charakteristiky přepisu samotného tedy plyne, že by měl jít generovat
+pravidlově na základě výše zmíněné percepční stylizace průběhu F0 v podobě
+prozogramu. Co se jeho konkrétní podoby týče, jako ideální se jeví podobný
+přístup, jaký byl zvolen mezinárodním systémem pro transkripci intonace
+(INTSINT; Hirst & Di Cristo CIT.). Jeho cílem je, podobně jako v našem případě,
+dovolit badatelům poměrně věrně zachytit intonační kontury studovaného jazyka
+(ale zároveň odfiltrovat např. mikrointonační fluktuace, které jsou při
+percepci kompenzovány), a teprve posléze na základě přepsaného materiálu
+odvodit, které intonační vzorce či jejich dílčí rysy jsou pro daný jazyk
+funkčně relevantní, a které je možné volněji variovat.
+
+Navrhovaný projekt si tedy klade za cíl dva hlavní úkoly:
+
+1. fonetický přepis intonace v aktuálně budovaném korpusu neformální mluvené
+   češtiny ORTOFON (nejprve stylizované kontury, tzv. prozogramy, které budou
+   následně pravidlově převtěleny do symbolického přepisu blízkého INTSINTu, či
+   přímo totožného s ním)
+2. *corpus-driven* analýza intonačních vzorců současné neformální čestiny na
+   základě dat získaných v bodu 1
+
+# další podtitul -- současný stav poznání...?
+
+intonační typologie existuje, ale ta nejúplnější a vědecky nejrespektovanější
+je již vice než padesát let stara a co víc, založená na introspektivnich
+soudech o ctenem spisovném jazyce a jeho nesystematickych, anekdotalnich
+pozorováních (tehdy to šlo jinak jen stěží). [popis] bylo by tedy teoreticky
+možné zvolit cestu učení s učitelem, tj. otagovat ručně trénovací data a použít
+ANN či CRF či jinou pattern recognition/klasifikační metodu pro naučení funkce
+$vektor akustických rysů → melodém$, ale našly by se vůbec ty Danesovy
+melodémy? nepropasli bychom tím další, zatím neznámé či s Danesovym formalismem
+nekompatibilní jevy? v neposlední řadě, v přepisu nedisponujeme v pravém slova
+smyslu členěním na PU (jen pauzy a fakultativně značené předěly), které je s
+přiřazováním melodému intimně spjato, takže by aplikace tohoto postupu nebyla
+bez vlastních komplikaci. lépe tedy postupovat opačným směrem, od fonetiky k
+fonologii spis než naopak. takovýto postup se zakládá na postupné stylizaci
+křivky F0, jejíž parametry ovšem nebudou nijak záměrně jazykově specifické,
+nýbrž motivované jen a pouze tím, co obecně víme o lidské sluchové percepci,
+konkrétně percepci variaci frekvence v čase (melodie) zvlaste v oblasti
+recove. stylizace intonace -- bohata historie uz od dob IPO, prozogram jako
+automatizovany postup pro totez, intsint (3x cit.). kvuli prozogramu htk, dalsi
+vyhody -- vrstva s trváními hlásek. pak clusterovani. k-means, Litevci.
+
+Raškinis & Kazlauskienė -- čtený text (s. 358)!
+
+anotace -- nemáme úplně systematické značení předělů ani rozdělení na různé
+úrovně hloubky, jen pauzy; navíc lze předpokládat, že mluva neformálních
+nepřipravených interakcí bude z tohoto hlediska výrazně méně spořádaná
+
+spíš fonetický přepis intonace → INTSINT. Cílem není tedy anotovat mluvená data
+na základě kategorií vyplynuvších z dosavadních výzkumů prozodie v češtině,
+nýbrž umožnit *corpus-driven* (Tognini-Bonelli) výzkum české intonace.
+
+S tím souvisí i širší záměr projektu, a to zvýšit podíl co nejobjektivnějších
+(a přitom užitečných) anotací v korpusech mluveného jazyka. Na rozdíl od
+korpusů psaných, které badateli skýtají ,,jen`` shromážděná, ale jinak původní
+a nezkreslená jazyková data,[^1] jsou korpusy mluveného jazyka od svého vzniku
+zatíženy prvotním interpretačním aktem, tj. transkripcí. Přímá využitelnost
+surových zvukových dat je pro lingvistu malá, potřebuje jejich symbolický
+přepis, který pak může zkoumat v propojení se zvukem či sám o sobě. ...
+
+Vedlejší účinky:
+
+- zarovnání přepisů mluveného korpusu s nahrávkou na úroveň hlásky (v mezích
+  schopností automatické alignace pomocí Baum-Welchova algoritmu a technických
+  možností -- u horších nahrávek to patrně půjde těžko nebo vůbec)
+
+- kontrola konzistentnosti segmentálního fonetického přepisu -- Baum-Welchův
+  algoritmus totiž spojuje úseky zvuku se symboly na základě pravděpodobnosti,
+  takže lze zpětně dohledat místa, kde algoritmus nepovažuje spárování zvuku a
+  přepisu za příliš pravděpodobné, sluchem přepis ověřit a případně zrevidovat
+
+<!-- !!! někam doplnit, že se může stát, že ta anotace bude jen na části -->
+<!-- korpusu definované čistě technicky kvalitou nahrávek -- prostě na těch, -->
+<!-- kde se metoda automatické anotace chytá -->
+
+<!-- zmínit, že intonaci dělají v Dialogu + i Pořízka, a proč to já chci dělat -->
+<!-- jinak -->
+
+# Bibliografie
+
+- Daneš, 1957, Intonace a věta ve spisovné češtině.
+- Volín & Bořil, 2014, General and Speaker-specific Properties of F0 Contours in
+  Short Utterances
+- Raškinis & Kazlauskienė, 2013, From speech corpus to intonation corpus:
+  clustering phrase pitch contours of Lithuanian
+- Boersma & Weenink, Praat
+- Young et al., 2000, HTK Book
+- Tognini-Bonelli, T. 2001. Corpus Linguistics at Work. Amsterdam: John Benjamins.
+- Mertens, 2004, Prosogram
+- ANNIS
+
+<!-- Poznámky pod čarou: -->
+
+[^1]: I to je samozřejmě třeba brát s rezervou, už sám proces selekce a
+de-/rekontextualizace zdrojových textů je jistou formou rudimentární
+interpretace.
