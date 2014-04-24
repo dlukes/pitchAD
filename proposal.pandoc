@@ -150,6 +150,7 @@ bude při práci s materiálem dále doplňován a upřesňován:
 - místa s nápadnou emfází na slově či sekvenci slov (v korpusu ORTOFON značená
   pomocí složených závorek `{}`)
 - místa s otázkou (značená `?`)
+- místa, kde mluvčí imituje jiného mluvčího (značená `<IM ... >`)
 - konce promluv (tj. místa, kde jeden mluvčí domluví a všichni se na delší dobu
   odmlčí)
 - místa před pauzou/předělem (značená `..`/`.`) -- ovšem pozor, intonačně
