@@ -1,3 +1,4 @@
+% !TEX TS-program = pandoc
 ---
 title: "Intonace v korpusech mluvené češtiny: automatické rozpoznání,
 kvantitativní analýza a anotace"
@@ -34,17 +35,19 @@ anotace vycházející z takovýchto analýz budou moct být koncovým uživatel
 zpřístupněny prostřednictvím dedikované vrstvy v přepisu.[^2]
 
 V rámci svého doktorského projektu bych uživatelům rád jednu takovou doplňkovou
-vrstvu nabídl, a to vrstvu s anotací intonace.[] Těžištěm práce by mělo být
+vrstvu nabídl, a to vrstvu s anotací intonace.[] <!-- VC: Projekt disertační práce by neměl být postaven jako sližba uživatelům ČNK, ale jako samostatný výzkumný úkol. Formulaci bych proto změnil. Je ale dobré to jako motivaci, proč projekt dělat, někde uvést -->
+Těžištěm práce by mělo být
 **automatické rozpoznání kontur základní frekvence** (F0), která je primárním
 akustickým korelátem intonace, vytipování intonačně zajímavých míst v textu a
 **kvantitativní analýza** (*clusterování*) kontur, které se na nich
 vyskytují. Kategorie (široké skupiny podobných kontur), které z této analýzy
-vyvstanou, budou základem pro vytvoření **lingvistické funkční typologie**
+vyvstanou, budou základem pro vytvoření **lingvistické funkční typologie** <!-- VC: S termínem "typologie" bych byl opatrný, to má u tradičnějších lingvistů (a zejména žáků V. Skaličky) poměrně přesně vymezený statut; to co vy chcete udělat je mnohem spíš asi "klasifikace". -->
 některých intonačních vzorců (intonémů) hojně využívaných v neformální mluvené
 češtině. V duchu této typologie pak budou zpětně anotovány odpovídající
-kontury v korpusu.
+kontury v korpusu. <!-- VC: Termín "intoném" jsem já na fonetice neslyšel, což by tak nevadilo, asi je to něco novějšího, ale ta koncovka -ém sugeruje, že se jedná o jednotku funkční (jako melodém) a tady bych byl zase opatrnej; klasifikace, ke které na základě clusterování F0 můžete dospět, bude formální, nikoli funkční. Je tedy možné (a dokonce dost pravděpodobné), že různé druhy kontur budou mít stejnou funkci (synonymie) a naopak jedna kontura bude fungovat dvěma způsoby (homonymie). Zůstal bych proto radši u těch "intonačních vzorců" a émické jednotky bych pro teď nechal stranou. -->
 
 # Rozpoznání F0
+
 
 Samotný odhad F0 větší problém nečiní, počítá se na základě autokorelace
 signálu, což je velmi robustní algoritmus, nalezne periodicitu i v silně
@@ -183,11 +186,12 @@ formě k funkci, ne naopak. Cílem není předem stanovit intonační vzorce mlu
 češtiny, ve smyslu funkčně diferenciovaných, distinktivních kategorií (ať už
 podle vlastních pozorování či Danešova kanonického modelu), nýbrž začít od
 empirie, najít opakující se formy, a jejich vlastnosti a vztahy v rámci systému
-teprve vyvozovat. Tyto vlastnosti ve výsledné typologii budou pravděpodobně
+teprve vyvozovat. <!-- VC: Zde je třeba asi uvést termín corpus-driven approach (viz E. Tognini-Bonelli 2001) -->
+Tyto vlastnosti ve výsledné typologii budou pravděpodobně
 zasahovat do různých jazykových rovin: syntaxe, sémantiky, pragmatiky, případně
 i sféry konverzační analýzy. Je též možné (dokonce pravděpodobné), že vztah
 $forma:funkce$ nebude $1:1$ a že jedna forma může v závislosti na kontextu,
-spřaženém lexikálním obsahu či dialektu nebo sociolektu sloužit vícero funkcím.
+spřaženém lexikálním obsahu či dialektu nebo sociolektu sloužit vícero funkcím. <!-- O důvod víc, proč s tím funkčním přístupem být opatrný, radím Vám proto: neslibujte, pouze uvádějte možnosti, kam až by výzkum mohl dospět -->
 
 Jednotlivé zjištěné a popsané intonační vzorce budou posléze doplněny do
 korpusu ORTOFON jako samostatná anotační vrstva. Bude tak na nich možné konat
@@ -234,7 +238,7 @@ přepis, který pak může zkoumat v propojení se zvukem či sám o sobě. Ten 
 ovšem zčásti ovlivněn subjektivními pohledy anotátorů, které se navíc navzájem
 mohou lišit. Doplnění anotačních vrstev, v nichž je zásah anotátora minimální
 nebo alespoň prokazatelně konzistentní, poskytuje nový prostor pro bádání a
-lingvisticky validní generalizace.
+lingvisticky validní generalizace. <!-- VC: Tenhle odstavec by měl být na začátku jako obecná motivace, proč projekt dělat. -->
 
 <!-- MOŽNÁ KLASIFIKACE INTONACE POMOCÍ ANN/CRF: -->
 
@@ -263,7 +267,7 @@ lingvisticky validní generalizace.
 
 [^1]: I to je samozřejmě třeba brát s rezervou, už sám proces selekce a
 de-/rekontextualizace zdrojových textů je jistou formou rudimentární
-interpretace.
+interpretace. <!-- VC: Nejen to, i písmo/psací soustava je interpretace, tokenizace taky, o lemmatizaci a morfologii ani nemluvě -->
 
 [^2]: Současné korpusové rozhraní ÚČNK souběžné prohledávání nezávislých vrstev
 neumožňuje, ale jak ukazuje příklad korpusového manažeru ANNIS [@zeldes+09],
