@@ -32,6 +32,6 @@
 ** clusterování
   - *distance measure*: upravená M.E.D.?
     - je totiž třeba zohlednit, že se fonologicky stejná kontura nemusí vždy
-      realizovat na stejně dlouhém segmentálním materiálu (viz [@raskinis13])
+      realizovat na stejně dlouhém segmentálním materiálu (viz [@raskinis+13])
     - dát třeba menší penalizace za nesymetrické matche "→" (tj. držení stejné
       úrovně v INTSINTu)?
