@@ -152,6 +152,7 @@ bude při práci s materiálem dále doplňován a upřesňován:
 - místa, kde mluvčí imituje jiného mluvčího (značená `<IM ... >`)
 - konce promluv (tj. místa, kde jeden mluvčí domluví a všichni se na delší dobu
   odmlčí)
+- místa s nárůstem intenzity během řeči (může souviset s expresivitou)
 - místa před pauzou/předělem (značená `..`/`.`) -- ovšem pozor, intonačně
   zajímavý jev nemusí nutně nastat na posledním taktu před pauzou/předělem; jak
   si v rámci svého modelu všímá už Daneš [-@danes57, 27--30, viz níže], posuny
