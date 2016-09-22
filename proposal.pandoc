@@ -1,79 +1,122 @@
 ---
-title: "Intonace v korpusech mluvené češtiny: automatické rozpoznání,
-kvantitativní analýza a anotace"
-author:
-- name: David Lukeš
+title: Projekt disertační práce
 csl: iso690-author-date-cs.csl
+author: David Lukeš
+date: Klasifikace českých intonačních vzorců na korpusových datech
 ...
+
+\begin{flushright}
+David Lukeš\\
+Uchazeč o doktorské studium
+\end{flushright}
+
+Studijní program: 7310V filologie\
+Studijní obor: matematická lingvistika\
+Předběžný název disertační práce:\
+**Klasifikace českých intonačních vzorců na korpusových datech**
+**Intonace v korpusu mluvené češtiny ORTOFON: automatické rozpoznání,
+kvantitativní analýza a anotace**\
 
 # Úvod
 
-Způsob budování korpusů neformální mluvené češtiny na ÚČNK doznal s aktuálním
-projektem korpusu ORTOFON dvou poměrně výrazných technologických skoků
-kupředu. První z nich se týká samotného surového zvukového signálu: oproti
-dřívější praxi se nahrává v nekomprimovaném bezeztrátovém formátu WAV a
-používají se kvalitnější přenosné diktafony, což má nesporný kladný vliv na
-kvalitu nahrávek -- jsou obecně lépe srozumitelné a čistší, než tomu u
-předchozích korpusů řady ORAL
-[viz @koprivova+06a; @waclawicova+08; @benesova+13] bylo zvykem. Druhý
-technologický posun je spojen s přepisem dat a spočívá v přechodu na
-vícevrstvou anotaci. Se zvukovým záznamem je nově možné propojit vícero na sobě
-nezávislých paralelních vrstev nesoucích různé typy informací.  Samostatné
-vrstvy s ,,ortografickým`` a fonetickým přepisem jsou doplněny o další úrovně s
-paralingvistickými a extralingvistickými informacemi o zvukové
-nahrávce. Takovýto přístup poskytuje při anotaci velkou volnost a možnost
-přidávat v budoucnu podle potřeby další typy anotace.
+Na rozdíl od korpusů psaných, které badateli skýtají ,,jen`` shromážděná, ale
+jinak relativně nezkreslená data o podobě psaného jazyka,[^1] jsou korpusy
+mluveného jazyka od svého vzniku zatíženy prvotním interpretačním aktem,
+tj. transkripcí. Přímá využitelnost surových zvukových dat je pro lingvistu
+malá, potřebuje jejich symbolický přepis, který pak může zkoumat v propojení se
+zvukem či sám o sobě. Ten je ovšem zčásti ovlivněn subjektivními pohledy
+skupiny anotátorů, kteří se navíc mohou rozcházet (problém **reliability**), či
+hůře, navzájem se sice shodovat, ale míjet se s realitou
+[problém **validity**, @artstein+08, 556--7]. S aktuálním projektem mluveného
+korpusu ORTOFON [budovaného na ÚČNK, @koprivova+14] přitom natolik stoupla
+kvalita nahrávek, že už lze pomýšlet na alespoň částečné zpracování
+počítačovými metodami analýzy řeči. Jednou z oblastí, kde by bylo nadmíru
+přínosné tyto postupy uplatnit, je intonace[^5].
 
-<!-- (ideálně by taková možnost měla být dostupná přímo i samotným -->
-<!-- koncovým uživatelům korpusu) -->
+Nejpropracovanější popis intonace v češtině představil před více než půl
+stoletím František Daneš [-@danes57] ve svém fonologickém systému kadencí
+(kadence, antikadence a polokadence; jinak též melodém ukončující klesavý,
+melodém ukončující stoupavý a melodém neukončující), které se dále dělí na
+různé realizační varianty. Tento model přitom má své metodologické meze: je
+založen na introspekci, a jak sám autor podotýká, cílí při popisu intonace ,,na
+jazyk spisovný ve funkci prostě sdělovací`` [@danes57, 7]. Takový materiál se
+blíží spíše řeči čtené (spisovnost předpokládá jistou plynulost a
+nepřerušovanost) a intonačně se od spontánních mluvených projevů může výrazně
+lišit: některé rysy či vzorce budou hypertrofované, jiné naopak potlačené či
+zcela nepřítomné. Bylo by tudíž záhodno doplnit tyto stávající znalosti o
+poznatky nové, které budou zaměřené primárně na neformální mluvenou řeč a
+založené na objektivní kvantitativní analýze autentického materiálu ze
+sociolingvisticky vyváženého reprezentativního korpusu. Vzhledem k
+metodologické i materiálové odlišnosti není primárním cílem vymezit se vůči
+Danešovu popisu,
+<!-- (v mnohých ohledech nejsou oba výzkumné záměry -->
+<!-- srovnatelné), -->
+nýbrž poskytnout vhled do některých charakteristik české intonace
+v běžné komunikaci a jejich případných odlišností napříč teritoriem České
+republiky.
 
-Z prvního výše zmíněného technologického posunu plyne, že začíná být možné
-uplatňovat na korpusové nahrávky i více či méně automatizované metody analýzy
-signálu. Druhý posun pak naznačuje, že existuje perspektiva, že dodatečné
-anotace vycházející z takovýchto analýz budou moct být koncovým uživatelům
-zpřístupněny prostřednictvím dedikované vrstvy v přepisu.[^2]
+<!-- popsat pak výsledky jako konstrukce v rámci CxG? -->
 
-V rámci svého doktorského projektu bych uživatelům rád jednu takovou doplňkovou
-vrstvu nabídl, a to vrstvu s anotací intonace.[] <!-- VC: Projekt disertační práce by neměl být postaven jako sližba uživatelům ČNK, ale jako samostatný výzkumný úkol. Formulaci bych proto změnil. Je ale dobré to jako motivaci, proč projekt dělat, někde uvést -->
-Těžištěm práce by mělo být
-**automatické rozpoznání kontur základní frekvence** (F0), která je primárním
-akustickým korelátem intonace, vytipování intonačně zajímavých míst v textu a
-**kvantitativní analýza** (*clusterování*) kontur, které se na nich
-vyskytují. Kategorie (široké skupiny podobných kontur), které z této analýzy
-vyvstanou, budou základem pro vytvoření **lingvistické funkční typologie** <!-- VC: S termínem "typologie" bych byl opatrný, to má u tradičnějších lingvistů (a zejména žáků V. Skaličky) poměrně přesně vymezený statut; to co vy chcete udělat je mnohem spíš asi "klasifikace". -->
-některých intonačních vzorců (intonémů) hojně využívaných v neformální mluvené
-češtině. V duchu této typologie pak budou zpětně anotovány odpovídající
-kontury v korpusu. <!-- VC: Termín "intoném" jsem já na fonetice neslyšel, což by tak nevadilo, asi je to něco novějšího, ale ta koncovka -ém sugeruje, že se jedná o jednotku funkční (jako melodém) a tady bych byl zase opatrnej; klasifikace, ke které na základě clusterování F0 můžete dospět, bude formální, nikoli funkční. Je tedy možné (a dokonce dost pravděpodobné), že různé druhy kontur budou mít stejnou funkci (synonymie) a naopak jedna kontura bude fungovat dvěma způsoby (homonymie). Zůstal bych proto radši u těch "intonačních vzorců" a émické jednotky bych pro teď nechal stranou. -->
+Předkládaný projekt materiálově cílí na nahrávky z výše zmíněného korpusu
+ORTOFON a jeho východiskem by mělo být **automatické rozpoznání kontur[^8]
+základní frekvence** (F0), která je primárním akustickým korelátem intonace,
+vytipování intonačně zajímavých míst v textu a **kvantitativní analýza**
+(*clusterování*) kontur, které se na nich vyskytují. Kategorie (široké skupiny
+podobných kontur), které z této analýzy vyvstanou, budou základem pro těžiště
+práce, jež bude spočívat v **lingvistickém popisu** některých intonačních
+vzorců hojně využívaných v neformální mluvené češtině. V závislosti na povaze
+materiálu získaného během *clusterování* může tento popis obsahovat návaznost
+na lexikální rovinu, syntaktické vlastnosti, pragmatiku či sociolingvistickou
+charakteristiku intonačních vzorců (včetně dlouhodobějších ukazatelů jako jsou
+průměr, rozpětí a variabilita F0).[^6] Ukáží-li se výsledky jako užitečné pro
+běžného uživatele korpusu z hlediska vyhledávání v mluvených textech, v duchu
+této klasifikace by pak mohly být zpětně anotovány odpovídající kontury ve
+veřejně dostupné verzi korpusu. Doplnění lingvistických informací, v nichž je
+zásah anotátora minimální nebo alespoň prokazatelně konzistentní, by badatelům
+poskytlo nový prostor pro výzkum a validní generalizace.
 
-# Rozpoznání F0
+<!-- POZOR: -->
+<!-- do socling popisu v podstatě spadá i analýza dlouhodobých charakteristik -->
+<!-- intonace -- mean, range, variability (Patel) apod. -->
 
+# Rozpoznání F0 a propojení s přepisem
 
-Samotný odhad F0 větší problém nečiní, počítá se na základě autokorelace
-signálu, což je velmi robustní algoritmus, nalezne periodicitu i v silně
-zašuměném signálu. V podobě odladěné přímo pro výzkum intonace je navíc už
-hotový a k dispozici v programech jako je např. Praat [@boersma+14]. Zádrhel
-tkví v tom, že zvukové nahrávky jsou v korpusu ORTOFON vůči přepisu zarovnané
-na příliš dlouhé jednotky (segmenty o maximální délce 25 slov). Nelze
-předpokládat, že by tyto segmenty vždy nutně odpovídaly funkčně relevantním
-intonačním celkům (konturám). Fonetický přepis sice obsahuje členění na mluvní
+Z technického hlediska je samotný odhad F0 poměrně spolehlivý, počítá se na
+základě autokorelace signálu, což je velmi robustní algoritmus, nalezne
+periodicitu i v silně zašuměném signálu. V podobě odladěné přímo pro výzkum
+intonace už je navíc implementovaný a k dispozici v programech jako je
+např. Praat [@boersma+14]. Zvukové nahrávky jsou však v korpusu ORTOFON vůči
+přepisu zarovnané na příliš dlouhé jednotky (segmenty o maximální délce 25
+slov), u nichž nelze předpokládat, že by vždy nutně odpovídaly funkčně
+relevantním intonačním celkům. Fonetický přepis sice obsahuje členění na mluvní
 takty, které již z hlediska prozodie jsou smysluplnými jednotkami
 [@danes57, 23], ovšem je potřeba najít ve zvukovém signálu jejich hranice.
 
-K tomu poslouží volně dostupný soubor nástrojů pro rozpoznávání řeči *Hidden
-Markov Model Toolkit* [HTK, @htkbook]. V našem případě nepůjde přímo o
-rozpoznání řeči, nýbrž o úlohu řádově jednodušší, tzv. *forced alignment*,
-neboť přepis již k dispozici máme a chceme pouze najít hranice slov a hlásek v
-signálu (hranice taktů jsou podmnožinou hláskových hranic). Jde o standardní
-postup, který se používá při trénování akustických modelů do rozpoznávače,
-přičemž na vstupu je jen zvuk a časově nijak neanotovaný přepis. Úloha bude o
-to lehčí, že není třeba časově alignovat vždy celou sondu najednou, ale díky
-členění na segmenty ji můžeme rozřezat na krátké úseky, které se budou
-zpracovávat jednotlivě. Jak ukazuje obr. \ref{kontura}, kde je vidět
-automatická alignace slova ,,kachličky`` (v rámci delšího segmentu) pomocí výše
-popsané metody, pilotní pokus na jedné sondě ze vznikajícího korpusu ORTOFON
-vypadá slibně (porovnejte odhadnuté hranice hlásek zejména se spektrogramem).
+K najití hranic hlásek poslouží volně dostupný soubor nástrojů pro rozpoznávání
+řeči *Hidden Markov Model Toolkit* [HTK, @htkbook]. V našem případě nepůjde
+přímo o rozpoznání řeči, nýbrž o úlohu řádově jednodušší, tzv. *forced
+alignment*, neboť přepis již k dispozici máme a chceme pouze najít hranice slov
+a hlásek v signálu (hranice taktů jsou podmnožinou hláskových hranic). Jde o
+standardní postup, který se používá při trénování akustických modelů do
+rozpoznávače, přičemž na vstupu je jen zvuk a časově nijak neanotovaný
+přepis. Úloha bude o to lehčí, že není třeba časově alignovat vždy celou sondu
+najednou, ale díky členění na segmenty ji můžeme rozřezat na krátké úseky,
+které se budou zpracovávat jednotlivě. Jak ukazuje obr. \ref{kontura}, kde je
+vidět automatická alignace slova ,,kachličky`` (v rámci delšího segmentu)
+pomocí výše popsané metody, pilotní pokus na jedné sondě ze vznikajícího
+korpusu ORTOFON vypadá slibně (porovnejte odhadnuté hranice hlásek zejména se
+spektrogramem).
 
-![Zvuková vlna (nahoře), přepis (uprostřed), spektrogram (dole) a autokorelací odvozená intonační křivka (modrá čára) z části sondy 13A055N. Vertikální přerušované čáry naznačují hranice hlásek automaticky stanovené pomocí sady nástrojů HTK.\label{kontura}](./figures/kontura.pdf)
+<!-- ![Zvuková vlna (nahoře), přepis (uprostřed), spektrogram (dole) a autokorelací odvozená intonační křivka (modrá čára) z části sondy 13A055N. Vertikální přerušované čáry naznačují hranice hlásek automaticky stanovené pomocí sady nástrojů HTK.](./figures/kontura.png) -->
+
+\begin{figure*}[t]
+\centering
+\includegraphics{./figures/kontura.pdf}
+\caption{Zvuková vlna (nahoře), přepis (uprostřed), spektrogram (dole) a
+autokorelací odvozená intonační křivka (modrá čára) z části sondy
+13A055N. Vertikální přerušované čáry naznačují hranice hlásek
+automaticky stanovené pomocí sady nástrojů HTK.\label{kontura}}
+\end{figure*}
 
 Může se pochopitelně stát, že signál bude v některých sondách či jejich částech
 méně poddajný a výsledky automatické alignace tudíž horší. Taková místa lze
@@ -99,26 +142,39 @@ segmentace, je tzv. prozogram
 stylizace je motivovaná dlouhou historií výzkumu percepce intonace zejména na
 pracovišti IPO v Eindhovenu [@thart+90].
 
-![Percepční stylizace intonační kontury v obr. \ref{kontura}, tzv. prozogram.\label{prozogram}](./figures/prozogram.pdf)
+<!-- vyzkoušet clusterování na obojím + zjistit, která data se na to lépe hodí -->
+<!-- (padají z nich "lepší" výsledky -- jak ale definovat "lepší"?) → vedlejší -->
+<!-- výzkumný cíl  -->
+
+<!-- ![Percepční stylizace intonační kontury v obr. \ref{kontura}, tzv. prozogram.](./figures/prozogram.png) -->
+
+\begin{figure}[h]
+\centering
+\includegraphics{./figures/prozogram.pdf}
+\caption{Percepční stylizace intonační kontury v obr. \ref{kontura},
+tzv. prozogram.\label{prozogram}}
+\end{figure}
 
 # Kvantitativní analýza (\emph{clusterování})
 
-Jak ukazují studie jako [@raskinis+13, na litevštině] nebo z našeho prostředí
-[@volin+14], seskupování intonačních křivek do charakteristických tříd pomocí
+Jak ukazují studie např. Raškinise a Kazlauskienėho
+[-@raskinis+13, na litevštině] nebo z našeho prostředí Volína a Bořila
+[-@volin+14], seskupování intonačních křivek do charakteristických tříd pomocí
 statistických metod jako je např. *k-means clustering* (v obou studiích) či
 funkční analýza hlavních komponent (*functional principal components analysis*
 -- FPCA, jen u Volína a Bořila) je možné, byť samozřejmě ne bezchybné či
 automaticky lingvisticky průhledné -- k tomu je potřeba s materiálem dále
 pracovat. Aby byly intonační kontury porovnatelné mezi různými kontexty a
-subjekty (např. napříč pohlavími), je dobré je nejprve normalizovat v časové i
-frekvenční doméně. Frekvenční normalizaci lze provést např. odečtením průměrné
-F0 mluvčího a přenásobením všech hodnot koeficientem odvozeným od jeho
-celkového intonačního rozpětí.[^4] O časovou normalizaci se může postarat přímo
-funkce, která v rámci procedury *k-means* počítá podobnost mezi konturami
-(tzv. *distance measure*); @raskinis+13 použili algoritmus založený na borcení
-časové osy [*dynamic time warping*, @sakoe+78], který vyhodnocuje podobnost
-dvou sekvencí s přihlédnutím k tomu, že navzájem si odpovídající části v obou
-sekvencích mohou mít různá trvání.
+subjekty (např. napříč pohlavími), přistupuje se většinou k normalizaci v
+časové i frekvenční doméně [viz např. @raskinis+13, 356]. Frekvenční
+normalizaci lze provést např. odečtením průměrné F0 mluvčího a přenásobením
+všech hodnot koeficientem odvozeným od jeho celkového intonačního rozpětí.[^4]
+O časovou normalizaci se může postarat přímo funkce, která v rámci procedury
+*k-means* počítá podobnost mezi konturami (tzv. *distance measure*); Raškinis a
+Kazlauskienė použili algoritmus založený na borcení časové osy
+[*dynamic time warping*, @sakoe+78], který vyhodnocuje podobnost dvou sekvencí
+s přihlédnutím k tomu, že navzájem si odpovídající části v obou sekvencích
+mohou mít různá trvání.
 
 Zásadním rozdílem oproti navrhovanému projektu je, že ve výše jmenovaných
 výzkumech byla pevně a předem stanovena místa, která byla považována z hlediska
@@ -134,25 +190,31 @@ mluva neformálních nepřipravených interakcí bude z tohoto hlediska výrazn�
 spořádaná, budou se vyskytovat i přerušované či nedokončené intonační celky
 apod.
 
-Je tedy třeba nejprve vytipovat, kde intonémy v textu hledat: konkrétně řečeno
-jde o **místa** (tj. body v promluvě, kde dochází k intonačně zajímavým jevům)
-a **úseky** (tj. přesné rozpětí hlásek/slabik, na nichž se intoném
+Je tedy třeba nejprve vytipovat, kde ucelené kontury v textu hledat: konkrétně
+řečeno jde o **místa** (tj. body v promluvě, kde dochází k intonačně zajímavým
+jevům) a **úseky** (tj. přesné rozpětí hlásek/slabik, na nichž se kontura
 realizuje). Co se úseků týče, jako smysluplná jednotka se jeví výše zmíněný
 mluvní takt, případně posloupnost taktů několika (dvou, tří -- jak dlouhé
 sekvence je rozumné zkoumat, stanovíme empiricky). Jak bylo zmíněno výše, takty
 jsou v korpusu ORTOFON značené a díky HTK budeme znát i jejich přesné hranice.
 
-Co se týče identifikace intonačně relevantních míst v textu, z nichž má smysl
-intonaci v taktech extrahovat a porovnávat, následuje předběžný seznam, který
-bude při práci s materiálem dále doplňován a upřesňován:
+Při identifikaci typů míst v textu, kde lze předpokládat výrazné zapojení
+intonace a na nichž má tudíž smysl kontury po taktech extrahovat a porovnávat,
+můžeme vycházet z vlastní zkušenosti s přepisováním nahrávek pro korpus
+ORTOFON. Následuje předběžný seznam, který bude při práci s materiálem dále
+doplňován a upřesňován:
+
+<!-- na základě vlastní zkušenosti s přepisováním nahrávek pro korpus ORTOFON -->
 
 - místa s nápadnou emfází na slově či sekvenci slov (v korpusu ORTOFON značená
   pomocí složených závorek `{}`)
 - místa s otázkou (značená `?`)
-- místa, kde mluvčí imituje jiného mluvčího (značená `<IM ... >`)
+- místa, kde mluvčí imituje jiného mluvčího (značená `<IM ... >`), mluví nahlas
+  (`<NH ... >`) či přímo křičí (`<KR ... >`) -- může souviset s nárůstem
+  expresivity
+  <!-- možná též půjde vyhledat podle sustained nárůstu intenzity v signálu -->
 - konce promluv (tj. místa, kde jeden mluvčí domluví a všichni se na delší dobu
   odmlčí)
-- místa s nárůstem intenzity během řeči (může souviset s expresivitou)
 - místa před pauzou/předělem (značená `..`/`.`) -- ovšem pozor, intonačně
   zajímavý jev nemusí nutně nastat na posledním taktu před pauzou/předělem; jak
   si v rámci svého modelu všímá už Daneš [-@danes57, 27--30, viz níže], posuny
@@ -168,44 +230,40 @@ bude při práci s materiálem dále doplňován a upřesňován:
   s jasnou pragmatickou relevancí -- např. partikulemi, tázacími dovětky nebo
   evaluativními adjektivy či adverbii
 
-# Funkční typologie a anotace
+# Popis a anotace v rámci korpusu ORTOFON
+
+<!-- nebo "funkční" popis? -->
 
 Stávající korpusy mluvené češtiny, které poskytují intonologickou anotaci --
 korpus DIALOG [@cmejrkova+04], Korpus olomoucké mluvené češtiny [@porizka09] --
-pracují s různými obměnami fonologického systému melodémů (kadence, polokadence
-a antikadence), tak jak jej definoval před více než půl stoletím František
-Daneš [@porizka09, 110].[^3] Tento model přitom má své metodologické meze: je
-založen na introspekci, a jak sám autor podotýká, cílí při popisu intonace ,,na
-jazyk spisovný ve funkci prostě sdělovací`` [@danes57, 7]. Takový materiál se
-blíží spíše řeči čtené (spisovnost předpokládá jistou plynulost a
-nepřerušovanost) a intonačně se od spontánních mluvených projevů může výrazně
-lišit: některé rysy či vzorce budou hypertrofované, jiné naopak potlačené či
-zcela nepřítomné.
-
-Navrhovaný projekt oproti tomu chce postupovat od fonetiky k fonologii, od
-formě k funkci, ne naopak. Cílem není předem stanovit intonační vzorce mluvené
-češtiny, ve smyslu funkčně diferenciovaných, distinktivních kategorií (ať už
-podle vlastních pozorování či Danešova kanonického modelu), nýbrž začít od
-empirie, najít opakující se formy, a jejich vlastnosti a vztahy v rámci systému
-teprve vyvozovat. <!-- VC: Zde je třeba asi uvést termín corpus-driven approach (viz E. Tognini-Bonelli 2001) -->
-Tyto vlastnosti ve výsledné typologii budou pravděpodobně
-zasahovat do různých jazykových rovin: syntaxe, sémantiky, pragmatiky, případně
-i sféry konverzační analýzy. Je též možné (dokonce pravděpodobné), že vztah
-$forma:funkce$ nebude $1:1$ a že jedna forma může v závislosti na kontextu,
-spřaženém lexikálním obsahu či dialektu nebo sociolektu sloužit vícero funkcím. <!-- O důvod víc, proč s tím funkčním přístupem být opatrný, radím Vám proto: neslibujte, pouze uvádějte možnosti, kam až by výzkum mohl dospět -->
+pracují s různými obměnami Danešova fonologického systému melodémů
+[kadence, polokadence a antikadence, @porizka09, 110].[^3] Navrhovaný projekt
+oproti tomu chce postupovat od fonetiky k fonologii, od formy k funkci, ne
+naopak. Cílem není předem stanovit intonační vzorce mluvené češtiny, ve smyslu
+funkčně diferenciovaných, distinktivních kategorií (ať už podle vlastních
+pozorování či Danešova kanonického modelu), nýbrž začít od empirie, najít
+opakující se formy, a jejich vlastnosti a vztahy v rámci systému teprve
+vyvozovat [tzv. *corpus-driven approach*, @tognini-bonelli01, 84]. Tyto
+vlastnosti ve výsledném popisu budou pravděpodobně zasahovat do různých
+jazykových rovin: syntaxe, sémantiky, pragmatiky, případně i sféry konverzační
+analýzy. Je též možné (dokonce pravděpodobné), že vztah $forma:funkce$ nebude
+$1:1$ a že jedna forma může v závislosti na kontextu, spřaženém lexikálním
+obsahu či dialektu nebo sociolektu sloužit vícero funkcím. Pokud na takovéto
+interakce dojde, pokusíme se je v mezích možného rozkrýt (korpus ORTOFON mimo
+jiné obsahuje i sociolingvistické metainformace o mluvčích).
 
 Jednotlivé zjištěné a popsané intonační vzorce budou posléze doplněny do
-korpusu ORTOFON jako samostatná anotační vrstva. Bude tak na nich možné konat
-stejné typy analýz jako na samotném přepisu, např. zkoumání distribuce různých
-variant v závislosti na sociolingvistických proměnných apod.
+korpusu ORTOFON jako samostatná anotační vrstva.[^7] Bude tak na nich možné
+konat stejné typy analýz jako na samotném přepisu, např. zkoumání distribuce
+různých variant v závislosti na sociolingvistických proměnných apod.
 
 Může se ukázat, že by bylo záhodné uživatelům korpusu poskytnout kromě
-fonologicky předzpracovaných a popsaných intonémů i přístup k metodologicky
-agnostické charakteristice intonace. V tomto ohledu sice jistě bude možné v
-rámci korpusu zpřístupnit i obrázky stylizovaných kontur (prozogramy); nicméně
-takováto data nejsou uzpůsobena pro vyhledávání. Pro tyto účely by tedy bylo
-lepší převést prozogramy na sekvenci diskrétních symbolů, tj. atomických
-fonetických intonačních událostí.
+předzpracovaných a popsaných kontur i přístup k metodologicky agnostické
+charakteristice intonace. V tomto ohledu sice jistě bude možné v rámci korpusu
+zpřístupnit i obrázky stylizovaných kontur (prozogramy); nicméně takováto data
+nejsou uzpůsobena pro vyhledávání. Pro tyto účely by tedy bylo lepší převést
+prozogramy na sekvenci diskrétních symbolů, tj. atomických fonetických
+intonačních událostí.
 
 Co se konkrétní podoby tohoto formalismu týče, ideální by bylo zvolit přístup
 obdobný mezinárodnímu systému pro transkripci intonace
@@ -229,17 +287,18 @@ intonačního rozpětí v dané promluvě.
 <!-- budou konturové typy vyvozené výše dohledatelné i přes tento symbolický -->
 <!-- přepis? -->
 
-S tím souvisí i širší záměr projektu, a to zvýšit podíl co nejobjektivnějších
-(a přitom užitečných) anotací v korpusech mluveného jazyka. Na rozdíl od
-korpusů psaných, které badateli skýtají ,,jen`` shromážděná, ale jinak původní
-a nezkreslená jazyková data,[^1] jsou korpusy mluveného jazyka od svého vzniku
-zatíženy prvotním interpretačním aktem, tj. transkripcí. Přímá využitelnost
-surových zvukových dat je pro lingvistu malá, potřebuje jejich symbolický
-přepis, který pak může zkoumat v propojení se zvukem či sám o sobě. Ten je
-ovšem zčásti ovlivněn subjektivními pohledy anotátorů, které se navíc navzájem
-mohou lišit. Doplnění anotačních vrstev, v nichž je zásah anotátora minimální
-nebo alespoň prokazatelně konzistentní, poskytuje nový prostor pro bádání a
-lingvisticky validní generalizace. <!-- VC: Tenhle odstavec by měl být na začátku jako obecná motivace, proč projekt dělat. -->
+<!-- S tím souvisí i širší záměr projektu, a to zvýšit podíl co nejobjektivnějších -->
+<!-- (a přitom užitečných) anotací v korpusech mluveného jazyka. Na rozdíl od -->
+<!-- korpusů psaných, které badateli skýtají ,,jen`` shromážděná, ale jinak původní -->
+<!-- a nezkreslená jazyková data,[^1] jsou korpusy mluveného jazyka od svého vzniku -->
+<!-- zatíženy prvotním interpretačním aktem, tj. transkripcí. Přímá využitelnost -->
+<!-- surových zvukových dat je pro lingvistu malá, potřebuje jejich symbolický -->
+<!-- přepis, který pak může zkoumat v propojení se zvukem či sám o sobě. Ten je -->
+<!-- ovšem zčásti ovlivněn subjektivními pohledy anotátorů, které se navíc navzájem -->
+<!-- mohou lišit. Doplnění anotačních vrstev, v nichž je zásah anotátora minimální -->
+<!-- nebo alespoň prokazatelně konzistentní, poskytuje nový prostor pro bádání a -->
+<!-- lingvisticky validní generalizace. <\!-- VC: Tenhle odstavec by měl být na -->
+<!-- začátku jako obecná motivace, proč projekt dělat. -\-> -->
 
 <!-- MOŽNÁ KLASIFIKACE INTONACE POMOCÍ ANN/CRF: -->
 
@@ -262,18 +321,21 @@ lingvisticky validní generalizace. <!-- VC: Tenhle odstavec by měl být na za�
 <!-- diskrétních symbolů. Koneckonců i vlivné intonologické formalismy jako jsou -->
 <!-- systémy ToBI [@CIT] či INTSINT [@CIT] s takovouto diskretizací počítají. -->
 
-# Bibliografie
+\newpage
+
+# Bibliografie (základní četba k tématu práce)
 
 <!-- Poznámky pod čarou: -->
 
-[^1]: I to je samozřejmě třeba brát s rezervou, už sám proces selekce a
-de-/rekontextualizace zdrojových textů je jistou formou rudimentární
-interpretace. <!-- VC: Nejen to, i písmo/psací soustava je interpretace, tokenizace taky, o lemmatizaci a morfologii ani nemluvě -->
+[^1]: I to je samozřejmě třeba brát s rezervou, už sám proces selekce,
+de-/rekontextualizace a zejména tokenizace zdrojových textů je jistou formou
+rudimentární interpretace. Pokud navíc pracujeme i s lemmatizací a
+morfologickými tagy, je už míra interpretace značná.
 
-[^2]: Současné korpusové rozhraní ÚČNK souběžné prohledávání nezávislých vrstev
-neumožňuje, ale jak ukazuje příklad korpusového manažeru ANNIS [@zeldes+09],
-který vyniká právě ve vyhledávání ve víceúrovňových komplexně provázaných
-jazykových datech, nejedná se o neřešitelný problém.
+<!-- [^2]: Současné korpusové rozhraní ÚČNK souběžné prohledávání nezávislých vrstev -->
+<!-- neumožňuje, ale jak ukazuje příklad korpusového manažeru ANNIS [@zeldes+09], -->
+<!-- který vyniká právě ve vyhledávání ve víceúrovňových komplexně provázaných -->
+<!-- jazykových datech, nejedná se o neřešitelný problém. -->
 
 [^3]: Jak správně poznamenává Pořízka [-@porizka09, 55], u korpusu DIALOG se
 zdá, že tento deklarovaný cíl není splněn a namísto (fonologických) melodémů
@@ -283,6 +345,21 @@ konci promluv.
 [^4]: Průměr a rozpětí F0 mohou být počítány buď v rámci segmentu, nebo celé
 nahrávky.
 
-[^5]: Pojmu intonace užívám v užším slova smyslu, tj. ve významu hlasové
+[^5]: Pojmu intonace užíváme v užším slova smyslu, tj. ve významu hlasové
 melodie. V širším slova smyslu, zahrnujícím i členění výpovědi, přízvuk,
-temporální charakteristiky apod., budu užívat termínu prozodie.
+temporální charakteristiky apod., budeme užívat termínu prozodie.
+
+[^6]: K měření variability F0 viz zejména @patel+06.
+
+[^7]: Na rozdíl od předchozích mluvených korpusů řady ORAL
+[viz @koprivova+06a; @waclawicova+08; @benesova+13] využívá korpus ORTOFON
+vícevrstvou anotaci, tj. se zvukovým záznamem bude možné propojit vícero na
+sobě nezávislých leč souběžně prohledávatelných vrstev nesoucích různé typy
+informací. To předpokládá i změnu korpusového manažeru; požadovanou
+funkcionalitu má např. systém ANNIS [@zeldes+09].
+
+[^8]: Moderní lingvistický popis intonace bývá kromě holistických kontur
+založen také na jednotlivých bodech
+[např. melodické akcenty a hraniční tóny v autosegmentální-metrické teorii, @ladd96]. @dubeda+08
+docházejí k názoru, že pro popis české intonace jsou oba tyto přístupy
+srovnatelně užitečné.
