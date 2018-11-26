@@ -1,0 +1,89 @@
+* Daneš
+
+- intonace = melodie + přízvuk [@danes57, 5] + členění/pauzy [@danes99]
+- [@danes99, 159]: s intonací to není tak, že by každá funkce/význam/emoce
+  měla svůj vlastní jedinečný (a povinný) intonační vzorec
+- [@danes99, 159]: Karcevského kompoziční vztahy -- dichotomie
+  kontrastivnost × nekontrastivnost a rovnomocnost × nerovnomocnost
+  1. symetrie: kontrastivní rovnomocnost
+  2. asymetrie: kontrastivní nerovnomocnost
+  3. opakování: nekontrastivní rovnomocnost (zřetězení stejných či podobných
+      elementů)
+  4. gradace: nekontrastivní nerovnomocnost
+- [@danes57, 18]: PÚ není vůbec nutně vázán sémanticky (× syntagma,
+  Vinogradov), odvíjí se od rytmu a intonace (a je tedy primárně spojen s
+  přirozenou fyziologickou nutností projev nějak členit)
+- [@danes57, 20] -- pozn. 32: pauza × předěl -- to je úplně stejná
+  terminologie a konceptualizace, jako jsem "vymyslel" pro ORTOFON :D (možná
+  nám o tom Palková vykládala na prozodii...?)
+- [@danes57, 23]: hezký rozbor MT
+  - Danešovo pojetí rozumně víc rytmicko-zvukové než Trávníčkovo, které
+    vyrábí z přívlastků (preponovaných adjektiv) příklonky na základě
+    sémanticko-syntaktického sepjetí
+  - !!! tj. i z ORTFONu vypadnou na základě MT informace o rytmické, ne
+    syntakticko-sémantické těsnosti (což *možná jde trochu proti tomu, co
+    od věci očekává Marie...*)
+
+* metoda
+
+** intonační kontury
+
+- převést na symbolický přepis (skutečně to udělat ještě před analýzou?
+  nepřipravuju se tím zbytečně o informace?), pak udělat intonační n-gramy a
+  začít při interpretaci od těch, které končí pauzou předělem (a je u nich
+  tedy vysoká pravděpodobnost, že obsahují /intonační centrum/ a tedy i
+  nějakou tu /kadenci/)
+
+** clusterování
+
+- *distance measure*: upravená M.E.D.?
+  - je totiž třeba zohlednit, že se fonologicky stejná kontura nemusí vždy
+    realizovat na stejně dlouhém segmentálním materiálu (viz [@raskinis+13])
+  - dát třeba menší penalizace za nesymetrické matche "→" (tj. držení stejné
+    úrovně v INTSINTu)?
+
+** stylizace INTSINT
+
+- viz kap. 9 v Botinis 2000, dělali přesně tohle
+
+* změny v baseline / rozpětí
+
+- tohle by mohlo být zajímavé sledovat / oanotovat
+- viz ZBŘK str. 131, tyhle změny můžou signalizovat třeba vsuvky
+
+* intonace a korpusy
+
+- viz Raso, Mello (eds., 2014) na ownCloudu
+- prozodie v PMK / SČFI: 17 intonačních struktur (kadencí)
+- holandsko-belgický korpus mluveného jazyka
+  - 10M
+  - mrknout se na podobu + výstupy -- korpus stál hodně peněz, co se dnes s
+    daty děje?
+  - ha, hromada zajímavých metodologických studií o (polo)automatickém
+    zpracování velkých mluvených korpusů:
+    http://lands.let.ru.nl/cgn/doc_English/topics/project/publ.htm
+- corpora with intonation unit annotation:
+  - http://mailman.uib.no//public/corpora/2017-March/026212.html
+  - http://mailman.uib.no//public/corpora/2017-March/026213.html
+
+* literatura
+
+Projít pasáže o zvukové stránce souvislé řeči (zejména členění apod.) v
+mluvnicích češtiny -- MČ1 rozhodně takový oddíl má, další určitě taky, bude
+nutné tohle znát.
+
+Rozdíly mezi jazyky: https://erikbern.com/2017/02/01/language-pitch.html
+
+Sarcasm detection / pitch analysis in Python:
+https://www.youtube.com/watch?v=xJlTDy61L8s
+
+* úlovky ze sond
+
+Jinak asi též viz 2016.org.
+
+- 17X025N: "ale co on tam byl jako s babou .. nějakou jako mladší" a okolí;
+  "ty vole to byl Jirka"
+
+* extrakce intonace
+
+Viz též nápady zde: https://erikbern.com/2017/02/01/language-pitch.html

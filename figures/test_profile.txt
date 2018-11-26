@@ -1,0 +1,1 @@
+Prosodic profile for input file: /home/dvl/Documents/dropbox/FFUK/DOK/test/test.wavProsodic profile calculation requires selection of full time range of speech signal. 
