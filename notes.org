@@ -42,7 +42,48 @@
   - dát třeba menší penalizace za nesymetrické matche "→" (tj. držení stejné
     úrovně v INTSINTu)?
 
+** stylizace INTSINT
+
+- viz kap. 9 v Botinis 2000, dělali přesně tohle
+
 * změny v baseline / rozpětí
 
 - tohle by mohlo být zajímavé sledovat / oanotovat
 - viz ZBŘK str. 131, tyhle změny můžou signalizovat třeba vsuvky
+
+* intonace a korpusy
+
+- viz Raso, Mello (eds., 2014) na ownCloudu
+- prozodie v PMK / SČFI: 17 intonačních struktur (kadencí)
+- holandsko-belgický korpus mluveného jazyka
+  - 10M
+  - mrknout se na podobu + výstupy -- korpus stál hodně peněz, co se dnes s
+    daty děje?
+  - ha, hromada zajímavých metodologických studií o (polo)automatickém
+    zpracování velkých mluvených korpusů:
+    http://lands.let.ru.nl/cgn/doc_English/topics/project/publ.htm
+- corpora with intonation unit annotation:
+  - http://mailman.uib.no//public/corpora/2017-March/026212.html
+  - http://mailman.uib.no//public/corpora/2017-March/026213.html
+
+* literatura
+
+Projít pasáže o zvukové stránce souvislé řeči (zejména členění apod.) v
+mluvnicích češtiny -- MČ1 rozhodně takový oddíl má, další určitě taky, bude
+nutné tohle znát.
+
+Rozdíly mezi jazyky: https://erikbern.com/2017/02/01/language-pitch.html
+
+Sarcasm detection / pitch analysis in Python:
+https://www.youtube.com/watch?v=xJlTDy61L8s
+
+* úlovky ze sond
+
+Jinak asi též viz 2016.org.
+
+- 17X025N: "ale co on tam byl jako s babou .. nějakou jako mladší" a okolí;
+  "ty vole to byl Jirka"
+
+* extrakce intonace
+
+Viz též nápady zde: https://erikbern.com/2017/02/01/language-pitch.html
